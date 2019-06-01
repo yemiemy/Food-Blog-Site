@@ -1,0 +1,31 @@
+{% extends "single.html" %}
+{% block content %}
+{% load static %}
+
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('{% static "images/bg_4.jpg" %} ');">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate pb-5 text-center">
+            <h1 class="mb-3 bread">Thanks For Visiting</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home <i class="ion-ios-arrow-forward"></i></a></span> <span><a href="{% url 'register' %}"> Log out </a><i class="ion-ios-arrow-forward"></i></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <h2>You have been logged out</h2>
+
+                  <div class="desc">
+                    <small class="text-muted"><a class="ml-2" href="{% url 'login' %}">Log in</a> Again 
+                    </small>
+              
+                  </div>
+             
+
+
+
+
+{% endblock content%}
+
+       

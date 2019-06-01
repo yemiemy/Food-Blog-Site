@@ -1,0 +1,19 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>{{header}}</title>
+	<link rel="stylesheet" type="text/css" href="{% static "blog.css" %}">
+</head>
+<body>
+
+	{% for post in titles %}
+
+	<h1>{{post.title}}</h1>
+	<small>published by {{post.published}} in {{post.Category.name}}</small>
+	<p>{{post.body}}</p>
+	{% endfor %}
+
+</body>
+</html>

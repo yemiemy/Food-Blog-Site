@@ -1,0 +1,190 @@
+{% load static%}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Create Post - ForTheLoveOfFood</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static "css/open-iconic-bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/animate.css" %} ">
+    
+    <link rel="stylesheet" href="{% static "css/owl.carousel.min.css" %} ">
+    <link rel="stylesheet" href="{% static "css/owl.theme.default.min.css" %} ">
+    <link rel="stylesheet" href="{% static "css/magnific-popup.css" %} ">
+
+    <link rel="stylesheet" href="{% static "css/aos.css" %} ">
+
+    <link rel="stylesheet" href="{% static "css/ionicons.min.css" %} ">
+    
+    <link rel="stylesheet" href="{% static "css/flaticon.css" %} ">
+    <link rel="stylesheet" href="{% static "css/icomoon.css" %} ">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'home' %}">ForTheLoveOfFood<span>.</span></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+          </button>
+
+           <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="{% url 'foods' %}" class="nav-link">Foods</a></li>
+            <li class="nav-item"><a href="{% url 'lifestyle' %}" class="nav-link">Lifestyle</a></li>
+            <li class="nav-item"><a href="{% url 'blog' %}" class="nav-link">Blog</a></li>
+            
+            {% if user.is_authenticated %}
+            <li class="nav-item"><a href="{% url 'profile' %}"  class="nav-link">Hi, {{user.username }}</a></li>
+            <li class="nav-item"><a href="{% url 'create_post' %}"  class="nav-link">Create Post</a></li>
+            <li class="nav-item"><a href="{% url 'logout' %}"  class="nav-link">Log out</a></li>            {% else %}
+            <li class="nav-item"><a href="{% url 'register' %}" class="nav-link">Register</a></li>
+            <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">Log In</a></li>
+            {% endif %}
+            <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
+            
+            <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- END nav -->
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}">
+  {{ message }}  
+</div>
+{% endfor %}
+{% endif %}
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('{% static "images/bg_4.jpg" %} ');">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate pb-5 text-center">
+            <h1 class="mb-3 bread">Create Post</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Create Post<i class="ion-ios-arrow-forward"></i></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+            <div class="comment-form-wrap pt-5">
+                <div class = "container">
+                    <div class="row">
+                        <div class="col-sm-8 offset-sm-2">
+
+                            <form method="POST" class="p-5 bg-light">
+                              {% csrf_token %}
+                                 {{ form|crispy }}
+                                <div class="form-group">
+                                    <input type="submit" value="Create Post" class="btn py-3 px-4 btn-primary">
+                                </div>
+                            </form>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>              
+          
+        
+
+
+    <footer class="ftco-footer ftco-footer-2 ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">ForTheLoveOfFood</h2>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-5">
+              <h2 class="ftco-heading-2">Information</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" class="py-2 d-block">Terms of Uses</a></li>
+                <li><a href="#" class="py-2 d-block">About Stories</a></li>
+                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
+                <li><a href="#" class="py-2 d-block">Accessibility Help</a></li>
+                <li><a href="#" class="py-2 d-block">Advertise with us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Categories</h2>
+               <ul class="list-unstyled">
+                <li><a href="{% url 'foods' %}" class="py-2 d-block">Food</a></li>
+                <li><a href="#" class="py-2 d-block">Restaurant</a></li>
+                <li><a href="#" class="py-2 d-block">Dessert</a></li>
+                <li><a href="{% url 'lifestyle' %}" class="py-2 d-block">Lifestyle</a></li>
+                <li><a href="#" class="py-2 d-block">Recipes</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+                <h2 class="ftco-heading-2">Have a Question?</h2>
+                <div class="block-23 mb-3">
+                  <ul>
+                    <li><span class="icon icon-map-marker"></span><span class="text">47, Ilaje Rd, Bariga, Lagos 10001.</span></li>
+                    <li><a href="#"><span class="icon icon-phone"></span><span class="text">+234 811 486 4108</span></a></li>
+                    <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@ftlf.com</span></a></li>
+                  </ul>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p>
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |  <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="{% url 'blog' %}" target="_blank">Yemiemy</a>
+  </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="{% static "js/jquery.min.js" %} "></script>
+  <script src="{% static "js/jquery-migrate-3.0.1.min.js" %} "></script>
+  <script src="{% static "js/popper.min.js" %} "></script>
+  <script src="{% static "js/bootstrap.min.js" %} "></script>
+  <script src="{% static "js/jquery.easing.1.3.js" %} "></script>
+  <script src="{% static "js/jquery.waypoints.min.js" %} "></script>
+  <script src="{% static "js/jquery.stellar.min.js" %} "></script>
+  <script src="{% static "js/owl.carousel.min.js" %} "></script>
+  <script src="{% static "js/jquery.magnific-popup.min.js" %} "></script>
+  <script src="{% static "js/aos.js" %} "></script>
+  <script src="{% static "js/jquery.animateNumber.min.js" %} "></script>
+  <script src="{% static "js/scrollax.min.js" %} "></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="{% static "js/google-map.js" %} "></script>
+  <script src="{% static "js/main.js" %} "></script>
+ 
+  </body>
+</html>
