@@ -17,8 +17,9 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path
 from pages import views
-from blog.views import  latest_blog, blog, single_page, lifestyle, create_post
-from pages.views import homepage, about, contact, foods, product_create_view
+from blog import views
+from blog.views import  latest_blog, blog, single_page, lifestyle, create_post, homepage
+from pages.views import about, contact, foods, product_create_view
 from users.views import register, profile
 from django.conf.urls.static import static
 from django.conf import settings

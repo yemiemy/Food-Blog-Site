@@ -7,10 +7,20 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+def homepage(request):
+	#print(request.user)
+	post = Post.objects.all()
+	feature = Post.objects.filter(featured = True)
+
+	#userInfo = request.user
+	#return HttpResponse("<h1>Hello World! My first Django Project")
+
+	# We use render to view our full html page: rendering a template
+	return render(request, 'index.html', {'post':post, 'feature':feature})
 
 
 def lifestyle(request):
-	post = Post.objects.all()
+	post = Post.objects.order_by('-id')
 
 	return render(request, 'lifestyle.html', {'post':post})
 
@@ -62,6 +72,7 @@ def single_page(request, id):
 	form = commentForm(request.POST or None)
 	#header = "This is My Blog"
 	comments = post.comments.all()
+	active = post.comments.filter(active=True)
 	if form.is_valid():
 			
 			comment = form.save(commit=False)
@@ -69,18 +80,12 @@ def single_page(request, id):
 			comment.post = post
 			comment.author = request.user 
 			comment.save()
-
-
-	
-
 	#if request.method == 'POST':
 	#	form = commentForm(request.POST)
-
 	#print(post)
-
-
 	return render(request, 'single_page.html', {
 		'post':post, 
 		'comments': comments,
-		'form':form,})
+		'form':form,
+		'active':active,})
 

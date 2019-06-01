@@ -22,6 +22,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='pictures/%Y/%m/%d/', max_length=255, null=True, blank=True)
     published = models.DateTimeField(auto_now_add=True) 
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
+    featured = models.BooleanField(default=False)
     #image = models.ImageField()
 
     def __str__(self):
@@ -34,6 +35,9 @@ class Comment(models.Model):
     writer = models.CharField(max_length=50, default=True, blank=True)
     email = models.EmailField(max_length=120)
     body = models.TextField()
-    active = models.BooleanField(default=True)
+    active = models.BooleanField(default=False)
     published = models.DateTimeField(auto_now_add=True) 
     #category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
+    def __str__(self):
+
+        return "{} published on {}".format(self.writer,self.published)

@@ -15,18 +15,18 @@ def product_create_view(request):
 	return render(request, "products/product_create.html", context)
 
 
-def homepage(request):
-	print(request.user)
+#def homepage(request):
+	#print(request.user)
 	#posts = Post.objects.all()
 	#header = "This is My Blog"
 	#print(posts)
-	userInfo = request.user
+	#userInfo = request.user
 
 	#The code below is to just print out something(h1 tag) on the page.
 	#return HttpResponse("<h1>Hello World! My first Django Project")
 
 	# We use render to view our full html page: rendering a template
-	return render(request, 'index.html', {})
+	#return render(request, 'index.html', {})
 
 
 def about(request):
