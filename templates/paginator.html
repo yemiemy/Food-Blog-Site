@@ -1,0 +1,50 @@
+<div class="row mt-5">
+              <div class="col text-center">
+                <div class="block-27">
+                  <ul>
+                    {% if object.has_previous %}
+                    <li><a href="?page=1">&lt;&lt;</a></li>
+                    <li><a href="?page={{ object.previous_page_number }}">&lt;</a></li>
+                    {% endif %}
+                    {% for num in object.paginator.page_range %}
+                      {% if object.number == num %}
+                      <li class="active"><span>{{ num }}</span></li>
+                      {% else %}
+                      <li>{{ num }}</li>
+                      {% endif %}</li>
+                    {% endfor %}
+                    <!--<li class="active"><span>1</span></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>-->
+                    {% if object.has_next %}
+                    <li><a href="?page={{ object.next_page_number }}">&gt;</a></li>
+                    <li><a href="?page= {{ object.paginator.num_pages}}">&gt;&gt;</a></li>
+                    {% endif %}
+                  </ul>
+                </div>
+              </div>
+  </div>
+    <!-- {{ object.number }}
+      {{ object.paginator.count }}
+      {{ object.paginator.num_pages }}
+      {{ object.paginator.page_range }} -->
+
+
+      <!--{% if object.has_previous %}
+        <a href="?page={{ object.previous_page_number }}">Previous</a>
+        <a href="?page=1"><</a>
+      {% endif %}
+      {% for num in object.paginator.page_range %}
+        {% if object.number == num %}
+        <strong>{{ num }}</strong>
+        {% else %}
+        {{ num }}
+        {% endif %}
+      {% endfor %}
+      {% if object.has_next %}
+        <a href="?page={{ object.next_page_number }}">Next</a>
+        <a href="?page= {{ object.paginator.num_pages}}"></a>
+       {% endif %} -->
+    

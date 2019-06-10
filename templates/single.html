@@ -82,7 +82,6 @@
       </div>
     </section>
 
-    
 
 		<section class="ftco-section">
       <div class="container">
@@ -90,26 +89,29 @@
 
           <div class="col-lg-8 order-lg-last ftco-animate">
             {% for post in object %}
+            
 
+            <img  class="blog-img mr-4" src="{{ post.author.profile.image.url }}" width="100px" height="100px">
             <h2 class="mb-3">{{post.title}}</h2>
             <small><i>Published {{post.published|naturaltime }} in <strong>{{post.category.name}} 
             </strong> by {{post.author}}</i></small>
             <p>{{post.body|truncatewords:10}}...</p>
             <p class="mb-0"><a href="{% url 'single_page' post.id %}" target="_blank" class="btn btn-primary">Read More <span class="icon-arrow_forward ml-4"></span></a></p>
+            <p>
+              
+            </p>
            <!-- <p>
               <img src="{% static "images/image_6.jpg" %} " alt="" class="img-fluid">
             </p>-->
             <!--<p>{{post.body|truncatewords:10}}...<a href="{% url 'single_page' post.id %}" class="tag-cloud-link"> Read More</a></p>-->
             {% endfor %}
+
             <h2 class="mb-3 mt-5"></h2>
             <p></p>
             <!--<p>
               <img src="{% static "images/image_4.jpg" %} " alt="" class="img-fluid">
             </p>-->
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
+            
             <div class="tag-widget post-tag-container mb-5 mt-5">
               <div class="tagcloud">
                 <a href="#" class="tag-cloud-link">Life</a>
@@ -118,16 +120,16 @@
                 <a href="#" class="tag-cloud-link">Travel</a>
               </div>
             </div>
-            
-            <div class="about-author d-flex p-4 bg-light">
-              <div class="bio mr-5">
+            {% include "paginator.html" %}
+            <!--<div class="about-author d-flex p-4 bg-light">
+              <div class="bio mr-5">-->
           <!--  <img src="{% static "images/person_1.jpg" %} " alt="Image placeholder" class="img-fluid mb-4">-->
-              </div>
+             <!--</div>
               <div class="desc">
                 <h3>George Washington</h3>
                 <p>I feel this is really nice!!</p>
               </div>
-            </div>
+            </div>-->
 
 
             <div class="pt-5 mt-5">
@@ -214,7 +216,7 @@
               </ul>-->
 
 
-            <h3 class="mb-5">Comments</h3>
+            <!--<h3 class="mb-5">Comments</h3>
             
           <div class="about-author d-flex p-4 bg-light">
             <div class="desc">
@@ -222,10 +224,10 @@
               <small>{{comments.published}}, {{comments.email}}</small>
               <p class="comment-body">{{comments.body}}</p>
             </div>
-          </div>
+          </div>-->
             
           
-              <!-- END comment-list -->
+              <!-- END comment-list 
               
               <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5">Leave a comment</h3>
@@ -237,16 +239,16 @@
                   </div>
 
                 </form>
-              </div>
+              </div>-->
             </div>
 
           </div> <!-- .col-md-8 -->
           <div class="col-lg-4 sidebar pr-lg-5 ftco-animate">
             <div class="sidebar-box">
-              <form action="#" class="search-form">
+              <form action="{% url 'search' %}" method="GET" class="search-form">
                 <div class="form-group">
                   <span class="icon icon-search"></span>
-                  <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
+                  <input type="text" name="query" class="form-control" placeholder="Type a keyword and hit enter">
                 </div>
               </form>
             </div>

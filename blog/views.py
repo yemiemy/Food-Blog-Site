@@ -4,6 +4,7 @@ from .models import Post, Category
 from .forms import commentForm, postForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -22,13 +23,20 @@ def homepage(request):
 def lifestyle(request):
 	post = Post.objects.order_by('-id')
 
-	return render(request, 'lifestyle.html', {'post':post})
+	paginator = Paginator(post, 3)
+	page = request.GET.get('page')
+	post = paginator.get_page(page)
+
+	return render(request, 'lifestyle.html', {'object':post}) 
 
 def latest_blog(request):
 	userInfo = request.user
 
 	#post = Post.objects.all()
 	post = Post.objects.order_by('-id')
+	paginator = Paginator(post, 3)
+	page = request.GET.get('page')
+	post = paginator.get_page(page)
 	form = commentForm()
 	#comments = post.comments.all()
 	#if form.is_valid():
@@ -88,4 +96,11 @@ def single_page(request, id):
 		'comments': comments,
 		'form':form,
 		'active':active,})
+
+def search_view(request):
+	query = request.GET['query']
+	posts = Post.objects.filter(title__icontains=query)|Post.objects.filter(body__icontains=query)
+	feature = Post.objects.filter(featured = True)
+
+	return render(request, 'search.html', {'post':posts, 'query':query, 'feature':feature})
 

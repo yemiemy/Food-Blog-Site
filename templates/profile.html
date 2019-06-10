@@ -21,12 +21,33 @@
     <div class="content-section">
       <div class="media">
         
-        <div class="media-body">
+        <!--<div class="media-body">
           <h2 class="account-heading" > {{user.username}}</h2>
           
-        </div>
+        </div>-->
       </div>
       <!--Form Here-->
+         <div class="comment-form-wrap pt-5">
+    <div class="col-sm-5 offset-sm-3">
+                <h3 class="mb-5">Profile Info</h3>
+                <form action="#" method="POST" class="p-5 bg-light" enctype="multipart/form-data">
+                  <h3>Update Profile Info</h3>
+                                 {% csrf_token %}
+                                 {{ u_form|crispy }}
+                                 {{ p_form|crispy }}
+
+                  <div class="form-group">
+                    <input type="submit" value="Update" class="btn py-3 px-4 btn-primary">
+                  </div>
+
+                </form>
+                  <div class="desc">
+                    <small class="text-muted"> <a class="ml-2" href="{% url 'login' %}"></a>
+                    </small>
+              
+                  </div>
+              </div>
+            </div>
     </div>
 
 

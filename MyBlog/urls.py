@@ -18,7 +18,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import path
 from pages import views
 from blog import views
-from blog.views import  latest_blog, blog, single_page, lifestyle, create_post, homepage
+from blog.views import  latest_blog, blog, single_page, lifestyle, create_post, homepage, search_view
 from pages.views import about, contact, foods, product_create_view
 from users.views import register, profile
 from django.conf.urls.static import static
@@ -41,8 +41,12 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
     path('profile/', profile, name='profile'),
+    path('search/', search_view, name='search')
 ] #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+admin.site.site_header = "ForTheLoveOfFood Admin"
+admin.site.site_title = "ForTheLoveOfFood Admin Portal"
+admin.site.index_title = "Welcome to ForTheLoveOfFood Portal"
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
